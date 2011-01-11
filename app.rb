@@ -1,6 +1,6 @@
 require 'rubygems'
 require 'sinatra'
-require 'Haml'
+require 'haml'
 require 'sass'
 require 'json'
 
