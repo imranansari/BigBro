@@ -24,7 +24,7 @@
                 user: 'Homer Simpson',
                 application: 'LincPad',
                 event: 'Contract Search',
-                location: 'Springfield, Unknown',
+                location: '36.072435, -79.791353',
                 lat: '36.072435',
                 lng: '-79.791353'
             },
@@ -33,7 +33,7 @@
                 user: 'Marge Simpson',
                 application: 'LincPad',
                 event: 'Event Search',
-                location: 'Springfield, Unknown',
+                location: '36.042709, -79.929537',
                 lat: '36.042709',
                 lng:'-79.929537'
             }
