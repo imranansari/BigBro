@@ -10,7 +10,7 @@ get '/app' do
 end
 
 get '/addactivity' do
-  haml :addevent
+  haml :addactivity
 end
 
 post '/addactivity' do
