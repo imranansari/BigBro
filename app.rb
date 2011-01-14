@@ -9,11 +9,11 @@ get '/app' do
   haml :index
 end
 
-get '/addevent' do
+get '/addactivity' do
   haml :addevent
 end
 
-post '/addevent' do
+post '/addactivity' do
   puts 'event posted'
   event = JSON.parse(request.body.read)
   Activity.create(event)
@@ -29,7 +29,7 @@ get '/test' do
 #  puts activity.to_json
 end
 
-get '/events' do
+get '/activities' do
   content_type 'application/json'
   products = Activity.find(:all)
   products.to_json
@@ -47,19 +47,19 @@ configure do
       :timeout  => 5000
   )
 
-  class CreateActivities < ActiveRecord::Migration
-    def self.up
-      create_table :activities, :force => true do |t|
-        t.integer :id
-        t.string :user
-        t.string :application
-        t.string :event
-        t.string :lat
-        t.string :lng
-      end
-    end
-  end
-  CreateActivities.up
+#  class CreateActivities < ActiveRecord::Migration
+#    def self.up
+#      create_table :activities, :force => true do |t|
+#        t.integer :id
+#        t.string :user
+#        t.string :application
+#        t.string :event
+#        t.string :lat
+#        t.string :lng
+#      end
+#    end
+#  end
+#  CreateActivities.up
 
   class Activity < ActiveRecord::Base
     validates_uniqueness_of :id
