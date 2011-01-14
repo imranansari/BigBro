@@ -4,6 +4,7 @@ require 'haml'
 require 'sass'
 require 'json'
 require 'active_record'
+require 'daemons'
 
 get '/app' do
   haml :index
@@ -39,12 +40,6 @@ get '/css/:name.css' do
   content_type 'text/css', :charset => 'utf-8'
   scss(:"/stylesheets/#{params[:name]}")
 end
-
-=begin
-get '/addevent' do
-  Activity.create(:id => 2, :user => 'imran', :application => 'LincPad')
-end
-=end
 
 configure do
   ActiveRecord::Base.establish_connection(
