@@ -2,6 +2,7 @@ $(document).ready(function() {
    $('#submitActivity').click(function(){
        var data = $.toJSON($('#eventForm').serializeObject());
        $.post("/addactivity", data );
+       alert('Activity Posted');
    });
 });
 
