@@ -4,7 +4,6 @@ require 'haml'
 require 'sass'
 require 'json'
 require 'active_record'
-require 'daemons'
 
 get '/app' do
   haml :index
