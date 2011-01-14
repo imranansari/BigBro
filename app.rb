@@ -9,6 +9,16 @@ get '/app' do
   haml :index
 end
 
+get '/addevent' do
+  haml :addevent
+end
+
+post '/addevent' do
+  puts 'event posted'
+  event = JSON.parse(request.body.read)
+  Activity.create(event)
+end
+
 get '/test' do
   puts "test hello"
 
@@ -19,8 +29,9 @@ get '/test' do
 #  puts activity.to_json
 end
 
-get '/products' do
-  products = Product.find(:all)
+get '/events' do
+  content_type 'application/json'
+  products = Activity.find(:all)
   products.to_json
 end
 
@@ -29,10 +40,11 @@ get '/css/:name.css' do
   scss(:"/stylesheets/#{params[:name]}")
 end
 
-
-class Activity
-  attr_accessor :name
+=begin
+get '/addevent' do
+  Activity.create(:id => 2, :user => 'imran', :application => 'LincPad')
 end
+=end
 
 configure do
   ActiveRecord::Base.establish_connection(
@@ -41,18 +53,22 @@ configure do
       :timeout  => 5000
   )
 
-  class CreateProducts < ActiveRecord::Migration
+  class CreateActivities < ActiveRecord::Migration
     def self.up
-      create_table :products, :force => true do |t|
-        t.string :name
-        t.decimal :price, :precision => 10, :scale => 2
+      create_table :activities, :force => true do |t|
+        t.integer :id
+        t.string :user
+        t.string :application
+        t.string :event
+        t.string :lat
+        t.string :lng
       end
     end
   end
-  CreateProducts.up
+  CreateActivities.up
 
-  class Product < ActiveRecord::Base
-    validates_uniqueness_of :name
+  class Activity < ActiveRecord::Base
+    validates_uniqueness_of :id
   end
-  Product.create(:name => 'Beer', :price => 6.99)
+  #Activity.create(:id => 1, :user => 'imran', :application => 'LincPad')
 end
