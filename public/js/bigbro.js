@@ -19,7 +19,7 @@
         var map = new google.maps.Map(document.getElementById('map'), options);
         var activities;
 
-        $.get('/events', {dataType : 'json'}, function(data) {
+        $.get('/activities', {dataType : 'json'}, function(data) {
             activities = data;
             console.log(activities);
 
