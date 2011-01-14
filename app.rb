@@ -21,7 +21,7 @@ end
 
 get '/products' do
   products = Product.find(:all)
-  puts products
+  products.to_json
 end
 
 get '/css/:name.css' do
