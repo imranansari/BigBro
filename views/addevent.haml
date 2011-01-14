@@ -1,0 +1,39 @@
+%html
+  %head
+    %title BigBro Add event
+    %link{:href => "css/bigbro.css", :media => "all", :rel => "stylesheet", :type => "text/css"}
+    %script{:src => "js/lib/jquery-1.4.4.js"}
+    %script{:src => "js/lib/jquery.json-1.3.min.js"}
+    %script{:src => "js/addevent.js"}
+  %body
+    #event
+      %form{:action => '/addevent', :method => 'POST', :id => 'eventForm'}
+        %table
+          %tr
+            %td
+              User
+            %td
+              %input{:type => 'text', :name => 'user'}
+          %tr
+            %td
+              App
+            %td
+              %input{:type => 'text', :name => 'application'}
+          %tr
+            %td
+              Event
+            %td
+              %input{:type => 'text', :name => 'event'}
+          %tr
+            %td
+              Latitude
+            %td
+              %input{:type => 'text', :name => 'lat'}
+          %tr
+            %td
+              Longitude
+            %td
+              %input{:type => 'text', :name => 'lng'}
+          %tr
+            %td
+              %input{:type => 'button', :id => 'submitActivity', :value => 'Post Event'}
