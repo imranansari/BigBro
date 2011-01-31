@@ -10,8 +10,8 @@
     window.onload = function() {
 
         var options = {
-            zoom: 12,
-            center: new google.maps.LatLng(36.072435, -79.791353),
+            zoom: 5,
+            center: new google.maps.LatLng(37.9985779, -98.6134051),
             mapTypeId: google.maps.MapTypeId.ROADMAP
         };
 
@@ -54,6 +54,13 @@
                     title: this.activity.user
                 });
 
+                $("<li/>", {
+                    text: this.activity.application + ' (' + this.activity.event + ')',
+                    click: function() {
+                        google.maps.event.trigger(marker, 'click')
+                    }
+                }).appendTo("#activityList");
+
 
                 (function(activity, marker) {
                     google.maps.event.addListener(marker, 'click', function() {
@@ -73,12 +80,8 @@
                         infowindow.open(map, marker);
 
                     });
-
                 })(this.activity, marker);
-
             });
-
         });
-
     };
 })();
