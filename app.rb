@@ -73,7 +73,6 @@ configure do
 
 ##control table##
 
-=begin
   class CreateSSEControl < ActiveRecord::Migration
     def self.up
       create_table :ssecontrols, :force => true do |t|
@@ -83,7 +82,6 @@ configure do
     end
   end
   CreateSSEControl.up
-=end
 
   class Ssecontrol < ActiveRecord::Base
     validates_uniqueness_of :id
