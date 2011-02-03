@@ -11,8 +11,8 @@ $(document).ready(function() {
 
 
     function handle_geolocation_query(position) {
-        console.log('Lat: ' + position.coords.latitude + ' ' +
-                'Lon: ' + position.coords.latitude);
+        $('#lat').val(position.coords.latitude);
+        $('#lng').val(position.coords.longitude);
     }
 });
 
