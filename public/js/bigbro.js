@@ -122,7 +122,7 @@
                         addActivity(this.activity, google.maps.Animation.DROP)
                     }
                 });
-
+                activities = newActivities;
             });
         }
 
