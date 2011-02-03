@@ -9,6 +9,24 @@
 (function() {
     window.onload = function() {
 
+        var source = new EventSource('/pullNewActivity');
+        source.addEventListener('message', function(e) {
+            console.log(e.data);
+            if (e.data.trim() === 'true') {
+                addNewEvent();
+            }
+        }, false);
+
+        source.addEventListener('open', function(e) {
+            // Connection was opened.
+        }, false);
+
+        source.addEventListener('error', function(e) {
+            if (e.eventPhase == EventSource.CLOSED) {
+                // Connection was closed.
+            }
+        }, false);
+
         var options = {
             zoom: 5,
             center: new google.maps.LatLng(37.9985779, -98.6134051),
@@ -45,43 +63,83 @@
 
              ];*/
 
+            addActivities(activities);
 
+        });
+
+        function addActivities(activities) {
             jQuery.each(activities, function() {
+                addActivity(this.activity);
+            });
+        }
 
-                var marker = new google.maps.Marker({
-                    position: new google.maps.LatLng(this.activity.lat, this.activity.lng),
-                    map: map,
-                    title: this.activity.user
+        function addActivity(activity, animationType) {
+            var marker = new google.maps.Marker({
+                position: new google.maps.LatLng(activity.lat, activity.lng),
+                map: map,
+                title: activity.user,
+                animation: animationType
+            });
+
+            $("<li/>", {
+                text: activity.application + ' (' + activity.event + ')',
+                click: function() {
+                    google.maps.event.trigger(marker, 'click')
+                }
+            }).prependTo("#activityList");
+
+
+            (function(acti, marker) {
+                google.maps.event.addListener(marker, 'click', function() {
+
+                    function getContent(activity) {
+                        var content = 'User : ' + acti.user +
+                                '</br> Application : ' + acti.application +
+                                '</br> Event : ' + acti.event +
+                                '</br> Location : ' + acti.location;
+                        return content;
+                    }
+
+                    var infowindow = new google.maps.InfoWindow({
+                        content: getContent(acti)
+                    });
+
+                    infowindow.open(map, marker);
+
+                });
+            })(activity, marker);
+
+        }
+
+        function addNewEvent() {
+            console.log('add new event');
+
+            $.get('/activities', {dataType : 'json'}, function(data) {
+                var newActivities = data;
+                jQuery.each(newActivities, function() {
+                    if (!exists(this.activity.id)) {
+                        console.log('new id :' + this.activity.id);
+                        addActivity(this.activity, google.maps.Animation.DROP)
+                    }
                 });
 
-                $("<li/>", {
-                    text: this.activity.application + ' (' + this.activity.event + ')',
-                    click: function() {
-                        google.maps.event.trigger(marker, 'click')
-                    }
-                }).appendTo("#activityList");
-
-
-                (function(activity, marker) {
-                    google.maps.event.addListener(marker, 'click', function() {
-
-                        function getContent(activity) {
-                            var content = 'User : ' + activity.user +
-                                    '</br> Application : ' + activity.application +
-                                    '</br> Event : ' + activity.event +
-                                    '</br> Location : ' + activity.location;
-                            return content;
-                        }
-
-                        var infowindow = new google.maps.InfoWindow({
-                            content: getContent(activity)
-                        });
-
-                        infowindow.open(map, marker);
-
-                    });
-                })(this.activity, marker);
             });
-        });
+        }
+
+        function exists(id) {
+            var success = false;
+            jQuery.each(activities, function() {
+                if (this.activity.id === id) {
+                    success = true;
+                    return success;
+                }
+            });
+
+            if (!success) {
+                return false;
+            } else {
+                return true;
+            }
+        }
     };
 })();

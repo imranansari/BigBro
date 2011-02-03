@@ -17,6 +17,11 @@ post '/addactivity' do
   puts 'event posted'
   event = JSON.parse(request.body.read)
   Activity.create(event)
+
+  sseControl = Ssecontrol.find(1)
+  sseControl.newevent = true
+  sseControl.save
+  
 end
 
 get '/test' do
@@ -65,4 +70,41 @@ configure do
     validates_uniqueness_of :id
   end
   #Activity.create(:id => 1, :user => 'imran', :application => 'LincPad')
+
+##control table##
+
+=begin
+  class CreateSSEControl < ActiveRecord::Migration
+    def self.up
+      create_table :ssecontrols, :force => true do |t|
+        t.integer :id
+        t.boolean :newevent
+      end
+    end
+  end
+  CreateSSEControl.up
+=end
+
+  class Ssecontrol < ActiveRecord::Base
+    validates_uniqueness_of :id
+  end
+
+  #Ssecontrol.create(:id => 1, :newevent => true)
+end
+
+get '/pullNewActivity' do
+  content_type 'text/event-stream'
+  time1 = Time.new
+  mytime = time1.inspect
+  puts mytime
+  newevent = false
+  sseControl = Ssecontrol.find(1)
+  if sseControl.newevent then
+    newevent = true
+    sseControl.newevent = false
+    sseControl.save
+  end
+
+  return "data: "+newevent.inspect+" \n\n"
+
 end

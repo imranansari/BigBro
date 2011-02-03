@@ -1,13 +1,22 @@
 $(document).ready(function() {
-   $('#submitActivity').click(function(){
-       var data = $.toJSON($('#eventForm').serializeObject());
-       $.post("/addactivity", data );
-       alert('Activity Posted');
-   });
+    $('#submitActivity').click(function() {
+        var data = $.toJSON($('#eventForm').serializeObject());
+        $.post("/addactivity", data);
+        console.log(data);
+        //alert('Activity Posted');
+    });
+
+
+    navigator.geolocation.getCurrentPosition(handle_geolocation_query);
+
+
+    function handle_geolocation_query(position) {
+        console.log('Lat: ' + position.coords.latitude + ' ' +
+                'Lon: ' + position.coords.latitude);
+    }
 });
 
-$.fn.serializeObject = function()
-{
+$.fn.serializeObject = function() {
     var o = {};
     var a = this.serializeArray();
     $.each(a, function() {
