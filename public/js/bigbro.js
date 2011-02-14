@@ -6,8 +6,43 @@
  * To change this template use File | Settings | File Templates.
  */
 
+$(document).ready(function () {
+    $('body').layout({ applyDefaultStyles: true });
+
+	$('#panel2').slidePanel({
+		triggerName: '#trigger2',
+		triggerTopPos: '3px',
+		panelTopPos: '29px',
+        panelOpacity: 0.7        
+	});
+
+});
+
 (function() {
     window.onload = function() {
+
+        var activities;
+        //var selectedApps = new Array('LincPad', 'iEngage');
+
+        $('input[name="apps"]').change(function() {
+            var selectedApps = $('input[name="apps"]').serialize();
+            if (selectedApps.length > 0) {
+                //console.log('in array :' + selectedApps.indexOf(this.value));
+
+                var filteredActivities = _.select(activities, function(activities) {
+                    var activity = activities.activity;
+                    //return activity.application == 'LincPad';
+                    //return selectedApps.indexOf(activity.application) != -1;
+                    return selectedApps.indexOf(activity.application) != -1;
+                });
+                //console.log(filteredActivities);
+                $("#activityList").html('');
+                addActivities(filteredActivities);
+            } else {
+                $("#activityList").html('');
+                addActivities(activities);
+            }
+        });
 
         var source = new EventSource('/pullNewActivity');
         source.addEventListener('message', function(e) {
@@ -35,33 +70,11 @@
 
         // Creating the map
         var map = new google.maps.Map(document.getElementById('map'), options);
-        var activities;
+
 
         $.get('/activities', {dataType : 'json'}, function(data) {
             activities = data;
-            console.log(activities);
-
-            /*activity = [
-             {
-             id: '1',
-             user: 'Homer Simpson',
-             application: 'LincPad',
-             event: 'Contract Search',
-             location: '36.072435, -79.791353',
-             lat: '36.072435',
-             lng: '-79.791353'
-             },
-             {
-             id: '2',
-             user: 'Marge Simpson',
-             application: 'LincPad',
-             event: 'Event Search',
-             location: '36.042709, -79.929537',
-             lat: '36.042709',
-             lng:'-79.929537'
-             }
-
-             ];*/
+            //console.log(activities);
 
             addActivities(activities);
 
@@ -81,8 +94,14 @@
                 animation: animationType
             });
 
+            var source = $("script[name=activityListItem_tpl]").html();
+            var template = Handlebars.compile(source);
+            //activity.location = getLocation(activity.lat, activity.lng);
+            var activityHtml = template(activity);
+            //console.log(activityHtml);
+
             $("<li/>", {
-                text: activity.application + ' (' + activity.event + ')',
+                html: activityHtml,
                 click: function() {
                     google.maps.event.trigger(marker, 'click')
                 }
@@ -96,7 +115,7 @@
                         var content = 'User : ' + acti.user +
                                 '</br> Application : ' + acti.application +
                                 '</br> Event : ' + acti.event +
-                                '</br> Location : ' + acti.location;
+                                '</br> Location : ' + getLocation(acti.lat, acti.lng);
                         return content;
                     }
 
@@ -108,7 +127,6 @@
 
                 });
             })(activity, marker);
-
         }
 
         function addNewEvent() {
@@ -140,6 +158,26 @@
             } else {
                 return true;
             }
+        }
+
+        function getLocation(lat, lng) {
+            var geocoder = new google.maps.Geocoder();
+            var latlng = new google.maps.LatLng(lat, lng);
+            var location;
+            geocoder.geocode({'latLng': latlng}, function(results, status) {
+                if (status == google.maps.GeocoderStatus.OK) {
+                    if (results[1]) {
+                        location =  results[1].formatted_address;
+                        console.log('loc 1 :'+location)
+                    } else {
+                        location =  "No results found";
+                    }
+                } else {
+                    location = "Geocoder failed due to: " + status;
+                }
+            });
+            console.log('location :' + location);
+            return location;
         }
     };
 })();
