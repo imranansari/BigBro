@@ -15,23 +15,35 @@
     %script{:src => "js/lib/jquery.slidePanel.js"}
     %script{:src => "js/bigbro.js"}
   %body
-    .ui-layout-north Lincoln BigBro
-    .ui-layout-west
-      #search
-        %a#trigger2.trigger.left{:href => "#"} Filter
-        #panel2.panel.left
-          %p Here is some static content for Panel 2.
-          %p Ut purus metus, fermentum vitae pulvinar vel, elementum eget nulla. Pellentesque posuere, enim ut dapibus vestibulum, leo nunc porttitor neque, sed pulvinar orci sem eleifend sapien. Nullam at odio nibh, eu pharetra ipsum.
-        %span Apps
+    %header
+      Lincoln BigBro
+    #search
+    %a#trigger2.trigger.right{:href => "#"} Filter
+    #panel2.panel.right
+      #devices
+        .filterCategory Filter By Device
+        %input{:type =>'checkbox', :id =>'iPhone', :value => 'iPhone', :name => 'devices'}
+        %label iPhone
         %br
+        %input{:type =>'checkbox', :id =>'iPad', :value => 'iPad', :name => 'devices'}
+        %label iPad
+        %br
+        %input{:type =>'checkbox', :id =>'galaxyTab', :value => 'galaxyTab', :name => 'devices'}
+        %label Galaxy Tablet
+        %br      
+        %br      
+      #apps
+        .filterCategory Filter By Application
         %input{:type =>'checkbox', :id =>'LincPad', :value => 'LincPad', :name => 'apps'}
         %label LincPad
         %br
         %input{:type =>'checkbox', :id =>'iEngage', :value => 'iEngage', :name => 'apps'}
         %label iEngage
-    .ui-layout-center
-      .flex-container
-        #activityList.col-1-flex
-        #map.col-2-flex
+        %br
+        %input{:type =>'checkbox', :id =>'iPresent', :value => 'iPresent', :name => 'apps'}
+        %label iPresent        
+  .flex-container
+    #activityList.col-1-flex
+    #map.col-2-flex
 
     = haml :'jstemplates/activityListItem'
