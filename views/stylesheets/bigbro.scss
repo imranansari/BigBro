@@ -3,20 +3,44 @@ html, body {
   font-size: medium; }
 
 #map {
-  width: 900px;
-  height: 800px;
-  border: 1px solid black; }
+  border: 1px solid black;
+  }
 
 #activityList {
-    position:relative;
-    float:left;
-    width:300px;
-
+    overflow: scroll;
+    height: 900px;
+    cursor: pointer;
     li {
-        height:40px;
-        border-bottom-color:black;
-        border-bottom-style:solid;
-        border-width:1px;
+        list-style:none;
     }
+}
+
+.user {
+    font-weight:bold;
+}
+
+.icon {
+   opacity:0.4;
+}
+
+.activityItem:hover .icon{
+        opacity:6;
+}
+
+.activityItem:hover span{
+        opacity:1;
+}
+
+.activityItem span {
+    opacity:0.6;
+}
+
+header {
+    height:30px;
+    text-align:center;
+    color:maroon;
+}
+
+.filterCategory {
 
 }
