@@ -4,9 +4,34 @@
     %meta{:content => "text/html; charset=utf-8", "http-equiv" => "Content-Type"}/
     %title BigBro
     %link{:href => "css/bigbro.css", :media => "all", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "css/flex-box.css", :media => "all", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "css/slidepanel.css", :media => "all", :rel => "stylesheet", :type => "text/css"}/
     %script{:src => "http://maps.google.com/maps/api/js?sensor=false", :type => "text/javascript"}
     %script{:src => "js/lib/jquery-1.4.4.js"}
+    %script{:src => "js/lib/jquery.layout.min.js"}
+    %script{:src => "js/lib/handlebars.js"}
+    %script{:src => "js/lib/underscore-1.1.3.js"}
+    %script{:src => "js/util.js"}
+    %script{:src => "js/lib/jquery.slidePanel.js"}
     %script{:src => "js/bigbro.js"}
   %body
-    #activityList
-    #map
+    .ui-layout-north Lincoln BigBro
+    .ui-layout-west
+      #search
+        %a#trigger2.trigger.left{:href => "#"} Filter
+        #panel2.panel.left
+          %p Here is some static content for Panel 2.
+          %p Ut purus metus, fermentum vitae pulvinar vel, elementum eget nulla. Pellentesque posuere, enim ut dapibus vestibulum, leo nunc porttitor neque, sed pulvinar orci sem eleifend sapien. Nullam at odio nibh, eu pharetra ipsum.
+        %span Apps
+        %br
+        %input{:type =>'checkbox', :id =>'LincPad', :value => 'LincPad', :name => 'apps'}
+        %label LincPad
+        %br
+        %input{:type =>'checkbox', :id =>'iEngage', :value => 'iEngage', :name => 'apps'}
+        %label iEngage
+    .ui-layout-center
+      .flex-container
+        #activityList.col-1-flex
+        #map.col-2-flex
+
+    = haml :'jstemplates/activityListItem'
