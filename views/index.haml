@@ -6,6 +6,7 @@
     %link{:href => "css/bigbro.css", :media => "all", :rel => "stylesheet", :type => "text/css"}/
     %link{:href => "css/flex-box.css", :media => "all", :rel => "stylesheet", :type => "text/css"}/
     %link{:href => "css/slidepanel.css", :media => "all", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "http://fonts.googleapis.com/css?family=Ubuntu:regular,italic,bolditalic", :media => "all", :rel => "stylesheet", :type => "text/css"}/
     %script{:src => "http://maps.google.com/maps/api/js?sensor=false", :type => "text/javascript"}
     %script{:src => "js/lib/jquery-1.4.4.js"}
     %script{:src => "js/lib/jquery.layout.min.js"}
@@ -16,34 +17,36 @@
     %script{:src => "js/bigbro.js"}
   %body
     %header
-      Lincoln BigBro
+      #appName Lincoln App Tracker
     #search
-    %a#trigger2.trigger.right{:href => "#"} Filter
-    #panel2.panel.right
-      #devices
-        .filterCategory Filter By Device
-        %input{:type =>'checkbox', :id =>'iPhone', :value => 'iPhone', :name => 'devices'}
-        %label iPhone
-        %br
-        %input{:type =>'checkbox', :id =>'iPad', :value => 'iPad', :name => 'devices'}
-        %label iPad
-        %br
-        %input{:type =>'checkbox', :id =>'galaxyTab', :value => 'galaxyTab', :name => 'devices'}
-        %label Galaxy Tablet
-        %br      
-        %br      
-      #apps
-        .filterCategory Filter By Application
-        %input{:type =>'checkbox', :id =>'LincPad', :value => 'LincPad', :name => 'apps'}
-        %label LincPad
-        %br
-        %input{:type =>'checkbox', :id =>'iEngage', :value => 'iEngage', :name => 'apps'}
-        %label iEngage
-        %br
-        %input{:type =>'checkbox', :id =>'iPresent', :value => 'iPresent', :name => 'apps'}
-        %label iPresent        
+      %a#trigger2.trigger.right{:href => "#"} Filter
+      #panel2.panel.right
+        #devices
+          .filterCategory Filter By Device
+          %input{:type =>'checkbox', :id =>'iPhone', :value => 'iPhone', :name => 'devices'}
+          %label iPhone
+          %br
+          %input{:type =>'checkbox', :id =>'iPad', :value => 'iPad', :name => 'devices'}
+          %label iPad
+          %br
+          %input{:type =>'checkbox', :id =>'galaxyTab', :value => 'galaxyTab', :name => 'devices'}
+          %label Galaxy Tablet
+          %br
+          %br
+        #apps
+          .filterCategory Filter By Application
+          %input{:type =>'checkbox', :id =>'LincPad', :value => 'LincPad', :name => 'apps'}
+          %label LincPad
+          %br
+          %input{:type =>'checkbox', :id =>'iEngage', :value => 'iEngage', :name => 'apps'}
+          %label iEngage
+          %br
+          %input{:type =>'checkbox', :id =>'iPresent', :value => 'iPresent', :name => 'apps'}
+          %label iPresent
   .flex-container
-    #activityList.col-1-flex
+    #activity
+      #activityListHeader Activity
+      #activityList.col-1-flex
     #map.col-2-flex
 
     = haml :'jstemplates/activityListItem'
