@@ -8,7 +8,7 @@ html, body {
 
 #activityList {
     overflow: scroll;
-    height: 900px;
+    height: 650px;
     cursor: pointer;
     li {
         list-style:none;
@@ -36,11 +36,32 @@ html, body {
 }
 
 header {
-    height:30px;
-    text-align:center;
-    color:maroon;
+    height:35px;
+    background-color:#892034;
 }
 
 .filterCategory {
 
+}
+
+#appName{
+  position: relative;
+  color: white;
+  text-align:center;
+  font-family: 'Ubuntu', arial, serif;
+  font-weight: bold;
+  font-style: normal;
+  font-size: 28px;
+  font-weight: 700;
+  text-shadow: -3px 3px 5px rgba(0, 0, 0, 0.8);
+}
+
+.devices{
+    color:white;
+}
+
+#activityListHeader{
+    background-color: #efebe7;
+    position:relative;
+    left:5px;
 }

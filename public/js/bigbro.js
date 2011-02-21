@@ -11,8 +11,8 @@ $(document).ready(function () {
 
     $('#panel2').slidePanel({
         triggerName: '#trigger2',
-        triggerTopPos: '3px',
-        panelTopPos: '29px',
+        triggerTopPos: '36px',
+        panelTopPos: '35px',
         panelOpacity: 0.7
     });
 
@@ -60,7 +60,12 @@ $(document).ready(function () {
     var options = {
         zoom: 5,
         center: new google.maps.LatLng(37.9985779, -98.6134051),
-        mapTypeId: google.maps.MapTypeId.ROADMAP
+        mapTypeId: google.maps.MapTypeId.ROADMAP,
+        mapTypeControl: true,
+        mapTypeControlOptions: {
+          style: google.maps.MapTypeControlStyle.HORIZONTAL_BAR,
+          position: google.maps.ControlPosition.BOTTOM_CENTER
+        }
     };
 
     // Creating the map
@@ -70,9 +75,7 @@ $(document).ready(function () {
     $.get('/activities', {dataType : 'json'}, function(data) {
         activities = data;
         //console.log(activities);
-
         addActivities(activities);
-
     });
 
     function addActivities(activities) {
@@ -89,6 +92,8 @@ $(document).ready(function () {
             animation: animationType
         });
 
+        addMapMarker(activity, marker);
+        
         var source = $("script[name=activityListItem_tpl]").html();
         var template = Handlebars.compile(source);
         //activity.location = getLocation(activity.lat, activity.lng);
@@ -102,26 +107,24 @@ $(document).ready(function () {
             }
         }).prependTo("#activityList");
 
+    }
 
-        (function(acti, marker) {
-            google.maps.event.addListener(marker, 'click', function() {
+    function addMapMarker(activity, marker) {
+        google.maps.event.addListener(marker, 'click', function() {
 
-                function getContent(activity) {
-                    var content = 'User : ' + acti.user +
-                            '</br> Application : ' + acti.application +
-                            '</br> Event : ' + acti.event +
-                            '</br> Location : ' + getLocation(acti.lat, acti.lng);
-                    return content;
-                }
-
-                var infowindow = new google.maps.InfoWindow({
-                    content: getContent(acti)
-                });
-
-                infowindow.open(map, marker);
-
+            var infowindow = new google.maps.InfoWindow({
+                content: getMapPopupContent(activity)
             });
-        })(activity, marker);
+            infowindow.open(map, marker);
+        });
+    };
+
+    function getMapPopupContent(acti) {
+        var content = 'User : ' + acti.user +
+                '</br> Application : ' + acti.application +
+                '</br> Event : ' + acti.event +
+                '</br> Location : ' + getLocation(acti.lat, acti.lng);
+        return content;
     }
 
     function addNewEvent() {
