@@ -18,6 +18,9 @@
     %script{:src => "js/sse_controller.js"}    
     %script{:src => "js/searchfilter_controller.js"}
     %script{:src => "js/bigbro.js"}
+
+    = haml :'jstemplates/activityListItem'
+    = haml :'jstemplates/mapPopup'    
   %body
     %header
       #appName Lincoln App Tracker
@@ -30,29 +33,27 @@
         #devices
           .filterCategory Filter By Device
           %input{:type =>'checkbox', :id =>'iPhone', :value => 'iPhone', :name => 'devices'}
-          %label iPhone
+          %label{:for => 'iPhone'} iPhone
           %br
           %input{:type =>'checkbox', :id =>'iPad', :value => 'iPad', :name => 'devices'}
-          %label iPad
+          %label{:for => 'iPad'} iPad
           %br
           %input{:type =>'checkbox', :id =>'galaxyTab', :value => 'galaxyTab', :name => 'devices'}
-          %label Galaxy Tablet
+          %label{:for => 'galaxyTab'} Galaxy Tablet
           %br
           %br
         #apps
           .filterCategory Filter By Application
           %input{:type =>'checkbox', :id =>'LincPad', :value => 'LincPad', :name => 'apps'}
-          %label LincPad
+          %label{:for => 'LincPad'} LincPad
           %br
           %input{:type =>'checkbox', :id =>'iEngage', :value => 'iEngage', :name => 'apps'}
-          %label iEngage
+          %label{:for => 'iEngage'} iEngage
           %br
           %input{:type =>'checkbox', :id =>'iPresent', :value => 'iPresent', :name => 'apps'}
-          %label iPresent
+          %label{:for => 'iPresent'} iPresent
   .flex-container
     #activity
       #activityListHeader Activity
       #activityList.col-1-flex
     #map.col-2-flex
-
-    = haml :'jstemplates/activityListItem'

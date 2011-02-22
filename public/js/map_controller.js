@@ -45,11 +45,11 @@ var MapController = Backbone.Controller.extend({
     },
 
 
-    getMapPopupContent: function (acti) {
-        var content = 'User : ' + acti.user +
-                '</br> Application : ' + acti.application +
-                '</br> Event : ' + acti.event;
-        return content;
+    getMapPopupContent: function (activity) {
+        var source = $("script[name=mapPopup_tpl]").html();
+        var template = Handlebars.compile(source);
+        var mapPopupHtml = template(activity);
+        return mapPopupHtml;
     },
 
     getLocation : function (lat, lng) {

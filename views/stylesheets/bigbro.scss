@@ -3,7 +3,6 @@ $logoTextShadow: -3px 3px 5px rgba(0, 0, 0, 0.8);
 
 html, body {
   font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
-  font-size: medium;
   margin:0px;
   min-height: 100%;
   }
@@ -20,11 +19,7 @@ html, body {
     }
 }
 
-.user {
-    font-weight:bold;
-}
-
-.icon {
+.activityItem.icon {
    opacity:0.4;
 }
 
@@ -38,6 +33,14 @@ html, body {
 
 .activityItem span {
     opacity:0.6;
+}
+
+#timestamp{
+  text-align: right;
+  font: {
+    style:  normal;
+    size:   10px;
+  }
 }
 
 header {
