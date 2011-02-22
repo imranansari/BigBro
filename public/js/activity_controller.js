@@ -39,14 +39,31 @@ var ActivityListController = Backbone.Controller.extend({
         $.get('/activities', {dataType : 'json'}, function(data) {
             var newActivities = data;
             jQuery.each(newActivities, function() {
-                if (!exists(this.activity.id)) {
+                if (!activityListController.exists(this.activity.id)) {
                     console.log('new id :' + this.activity.id);
                     mapController.addActivity(this.activity, google.maps.Animation.DROP)
                 }
             });
             activities = newActivities;
         });
+    },
+
+    exists : function (id) {
+        var success = false;
+        jQuery.each(activities, function() {
+            if (this.activity.id === id) {
+                success = true;
+                return success;
+            }
+        });
+
+        if (!success) {
+            return false;
+        } else {
+            return true;
+        }
     }
+
 });
 
 var activityListController = new ActivityListController();

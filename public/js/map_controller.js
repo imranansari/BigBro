@@ -40,9 +40,7 @@ var MapController = Backbone.Controller.extend({
     addMapMarker: function (activity, marker) {
         google.maps.event.addListener(marker, 'click', function() {
 
-            var infowindow = new google.maps.InfoWindow({
-                content: mapController.getMapPopupContent(activity)
-            });
+            infowindow.content = mapController.getMapPopupContent(activity);
             infowindow.open(map, marker);
         });
     },
