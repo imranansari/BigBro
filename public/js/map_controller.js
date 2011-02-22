@@ -8,7 +8,6 @@
 
 var MapController = Backbone.Controller.extend({
 
-
     addActivity: function (activity, animationType) {
         var marker = new google.maps.Marker({
             position: new google.maps.LatLng(activity.lat, activity.lng),
