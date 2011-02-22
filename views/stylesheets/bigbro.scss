@@ -1,6 +1,12 @@
+$lincolnMaroon: #892034;
+$logoTextShadow: -3px 3px 5px rgba(0, 0, 0, 0.8);
+
 html, body {
   font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
-  font-size: medium; }
+  font-size: medium;
+  margin:0px;
+  min-height: 100%;
+  }
 
 #map {
   border: 1px solid black;
@@ -8,7 +14,6 @@ html, body {
 
 #activityList {
     overflow: scroll;
-    height: 650px;
     cursor: pointer;
     li {
         list-style:none;
@@ -37,7 +42,7 @@ html, body {
 
 header {
     height:35px;
-    background-color:#892034;
+    background-color:$lincolnMaroon;
 }
 
 .filterCategory {
@@ -48,12 +53,14 @@ header {
   position: relative;
   color: white;
   text-align:center;
-  font-family: 'Ubuntu', arial, serif;
-  font-weight: bold;
-  font-style: normal;
-  font-size: 28px;
-  font-weight: 700;
-  text-shadow: -3px 3px 5px rgba(0, 0, 0, 0.8);
+  text-shadow: $logoTextShadow;
+  font: {
+    family: 'Ubuntu', arial, serif;
+    weight: bold;
+    style:  normal;
+    size:   28px;
+    weight: 700;
+  }
 }
 
 .devices{
@@ -64,4 +71,15 @@ header {
     background-color: #efebe7;
     position:relative;
     left:5px;
+}
+
+#menu{
+    position:relative;
+    display:inline;
+    #analytics {
+        position:relative;
+        display:inline;
+        left: 98%;
+        top: -25px;
+    }
 }
