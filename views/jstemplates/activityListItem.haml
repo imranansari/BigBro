@@ -9,7 +9,7 @@
       %div{:style => "display: table-row"}
         %div{:style => "display: table-cell;"}
           %span
-            %img.icon{:src => '/images/device.png'}
+            {{> deviceIcon this}}
           %span {{application}}
       %div{:style => "display: table-row"}
         %div{:style => "display: table-cell;"}
@@ -23,6 +23,4 @@
           %span location
       %div{:style => "display: table-row"}
         %div{:style => "display: table-cell;"}
-          %span#timestamp 10/20/2001 10:10 PM
-
-
+          %span#timestamp {{created_at}}
