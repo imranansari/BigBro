@@ -12,7 +12,7 @@ SSEController = Backbone.Controller.extend({
         source.addEventListener('message', function(e) {
             console.log(e.data);
             if (e.data.trim() === 'true') {
-                mapActivityController.addNewEvent();
+                activityListController.addNewEvent();
             }
         }, false);
 

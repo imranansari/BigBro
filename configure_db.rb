@@ -5,19 +5,24 @@ configure do
       :timeout  => 5000
   )
 
-#  class CreateActivities < ActiveRecord::Migration
-#    def self.up
-#      create_table :activities, :force => true do |t|
-#        t.integer :id
-#        t.string :user
-#        t.string :application
-#        t.string :event
-#        t.string :lat
-#        t.string :lng
-#      end
-#    end
-#  end
-#  CreateActivities.up
+=begin
+  class CreateActivities < ActiveRecord::Migration
+    def self.up
+      create_table :activities, :force => true do |t|
+        t.integer :id
+        t.string :user
+        t.string :application
+        t.string :event
+        t.string :lat
+        t.string :lng
+        t.datetime :created_at
+        t.string :deviceType
+        t.string :osVersion
+      end
+    end
+  end
+  CreateActivities.up
+=end
 
   class Activity < ActiveRecord::Base
     validates_uniqueness_of :id

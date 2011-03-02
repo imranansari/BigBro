@@ -7,7 +7,7 @@
     %script{:src => "js/addactivity.js"}
   %body
     #event
-      %form{:action => '/addactivity', :method => 'POST', :id => 'eventForm'}
+      %form{:action => '/activity', :method => 'POST', :id => 'eventForm'}
         %table
           %tr
             %td
@@ -24,6 +24,16 @@
               Event
             %td
               %input{:type => 'text', :name => 'event'}
+          %tr
+            %td
+              Device Type
+            %td
+              %input{:type => 'text', :name => 'deviceType'}
+          %tr
+            %td
+              OS Version
+            %td
+              %input{:type => 'text', :name => 'osVersion'}
           %tr
             %td
               Latitude

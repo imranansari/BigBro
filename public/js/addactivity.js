@@ -1,7 +1,7 @@
 $(document).ready(function() {
     $('#submitActivity').click(function() {
         var data = $.toJSON($('#eventForm').serializeObject());
-        $.post("/addactivity", data);
+        $.post("/activity", data);
         console.log(data);
         //alert('Activity Posted');
     });

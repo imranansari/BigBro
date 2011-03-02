@@ -7,6 +7,7 @@ require 'active_record'
 require './configure_db'
 
 get '/app' do
+  #escape_attrs : false
   haml :index
 end
 
@@ -14,10 +15,14 @@ get '/addactivity' do
   haml :addactivity
 end
 
-post '/addactivity' do
-  puts 'event posted'
-  event = JSON.parse(request.body.read)
-  Activity.create(event)
+get '/analytics' do
+  haml :analytics
+end
+
+post '/activity' do
+  puts 'activity posted'
+  activity = JSON.parse(request.body.read)
+  Activity.create(activity)
 
   sseControl = Ssecontrol.find(1)
   sseControl.newevent = true
@@ -25,8 +30,9 @@ post '/addactivity' do
   
 end
 
-get '/activities' do
+get '/activity' do
   content_type 'application/json'
+  response['Expires'] = (Time.now).httpdate
   products = Activity.find(:all)
   products.to_json
 end

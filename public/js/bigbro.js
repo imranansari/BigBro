@@ -33,5 +33,18 @@ $(document).ready(function () {
         searchFilterController.filterByApp();
     });
 
+
+    $('#analytics').click(function() {
+        $("#analyticsDisplay").lightbox_me({
+            closeClick: false,
+            overlaySpeed:50,
+            closeSelector:".closeNote",
+            appearEffect:'fadeIn',
+            overlayDisappearSpeed: 0,
+            overlayCSS : {background: 'black', opacity: .6}
+        });
+    });
 });
+
+
 

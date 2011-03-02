@@ -17,10 +17,12 @@ var ActivityListController = Backbone.Controller.extend({
             panelTopPos: '35px',
             panelOpacity: 0.7
         });
+
+        mapController.registerTemplatePartials();
     },
 
     loadActivitiesFromServer: function() {
-        $.get('/activities', {dataType : 'json'}, function(data) {
+        $.get('/activity', {dataType : 'json'}, function(data) {
             activities = data;
             //console.log(activities);
             activityListController.addActivities(activities);
@@ -33,18 +35,22 @@ var ActivityListController = Backbone.Controller.extend({
         });
     },
 
+    getNewActivities:function (updatedActivitiesFromServer) {
+        return _.select(updatedActivitiesFromServer, function(updatedActivitiesFromServer) {
+            var activity = updatedActivitiesFromServer.activity;
+            return !activityListController.exists(activity.id);
+        });
+    },
+
     addNewEvent: function () {
         console.log('add new event');
 
-        $.get('/activities', {dataType : 'json'}, function(data) {
-            var newActivities = data;
+        $.get('/activity', {dataType : 'json'}, function(updatedActivitiesFromServer) {
+            var newActivities = activityListController.getNewActivities(updatedActivitiesFromServer);
             jQuery.each(newActivities, function() {
-                if (!activityListController.exists(this.activity.id)) {
-                    console.log('new id :' + this.activity.id);
-                    mapController.addActivity(this.activity, google.maps.Animation.DROP)
-                }
+                mapController.addActivity(this.activity, google.maps.Animation.DROP);
             });
-            activities = newActivities;
+            activities = updatedActivitiesFromServer;
         });
     },
 

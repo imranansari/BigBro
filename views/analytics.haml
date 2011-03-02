@@ -1,0 +1,14 @@
+%html
+  %head
+    %title Analytics
+    %link{:href => "css/bigbro.css", :media => "all", :rel => "stylesheet", :type => "text/css"}
+    %script{:src => "js/lib/jquery-1.4.4.js"}
+    %script{:src => "js/lib/backbone.js"}
+    %script{:src => "js/analytics_controller.js"}
+    %script{:src => "js/analytics.js"}
+    %script{:src => "http://www.google.com/jsapi"}
+    :javascript
+      google.load('visualization', '1', {packages: ['corechart']});
+
+  %body
+    #visualization

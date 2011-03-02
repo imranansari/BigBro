@@ -18,10 +18,10 @@ var MapController = Backbone.Controller.extend({
 
         mapController.addMapMarker(activity, marker);
         mapController.addActivityToList(activity, marker);
-
     },
 
     addActivityToList : function(activity, marker) {
+
         var source = $("script[name=activityListItem_tpl]").html();
         var template = Handlebars.compile(source);
         //activity.location = getLocation(activity.lat, activity.lng);
@@ -70,6 +70,24 @@ var MapController = Backbone.Controller.extend({
         });
         console.log('location :' + location);
         return location;
+    },
+
+    registerTemplatePartials : function() {
+        Handlebars.registerPartial('deviceIcon', function(activity) {
+            var icon;
+            switch (activity.deviceType) {
+                case 'android':
+                    icon = 'android.png';
+                    break;
+                case 'iphone':
+                    icon = 'iphone.png';
+                    break;
+                default:
+                    icon = 'other_mobile.png';
+                    break;
+            }
+            return "<img class='icon' src='/images/" + icon + "'/>";
+        });
     }
 
 });
