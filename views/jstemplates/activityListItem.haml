@@ -1,26 +1,20 @@
 %script{:name => "activityListItem_tpl", :type => "text/x-handlebars-template"}
   .activityItem
-    %div{:style => "display: table; border: 1px dotted gray; width: 250px;"}
-      %div{:style => "display: table-row;"}
-        %div{:style => "display: table-cell;"}
-          %span
-            %img.icon{:src => '/images/user.png'}
-          %span.user {{user}}
-      %div{:style => "display: table-row"}
-        %div{:style => "display: table-cell;"}
-          %span
-            {{> deviceIcon this}}
-          %span {{application}}
-      %div{:style => "display: table-row"}
-        %div{:style => "display: table-cell;"}
-          %span
-            %img.icon{:src => '/images/event.png'}
-          %span {{event}}
-      %div{:style => "display: table-row"}
-        %div{:style => "display: table-cell;"}
-          %span
-            %img.icon{:src => '/images/map.png'}
-          %span location
-      %div{:style => "display: table-row"}
-        %div{:style => "display: table-cell;"}
-          %span#timestamp {{created_at}}
+    %div{:style => "display: table-row;"}
+      %div{:style => "display: table-cell;"}
+        %span
+          %img.icon{:src => '/images/user.png'}
+        %span.user {{user}}
+    %div{:style => "display: table-row"}
+      %div{:style => "display: table-cell;"}
+        %span
+          {{> deviceIcon this}}
+        %span {{application}}
+    %div{:style => "display: table-row"}
+      %div{:style => "display: table-cell;"}
+        %span
+          %img.icon{:src => '/images/event.png'}
+        %span {{event}}
+    %div{:style => "display: table-row"}
+      %div{:style => "display: table-cell;"}
+        %span#timestamp {{created_at}}
