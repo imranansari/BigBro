@@ -1,4 +1,4 @@
-$lincolnMaroon: #892034;
+$lincolnBGColor: #892034;
 $logoTextShadow: -3px 3px 5px rgba(0, 0, 0, 0.8);
 
 html, body {
@@ -17,6 +17,12 @@ html, body {
     li {
         list-style:none;
     }
+}
+
+.activityItem{
+    display: table;
+    border-bottom: 1px solid gray;
+    width: 250px;
 }
 
 .activityItem.icon {
@@ -45,7 +51,7 @@ html, body {
 
 header {
     height:35px;
-    background-color:$lincolnMaroon;
+    background-color:$lincolnBGColor;
 }
 
 .filterCategory {
@@ -85,4 +91,18 @@ header {
         left: 98%;
         top: -25px;
     }
+}
+
+#analyticsDisplay{
+    display:none;
+    background:white;
+    width:600px;
+    height:400px;
+    border-radius: 7px;
+    opacity:0.7;
+}
+
+#visualization{
+    width: 600px;
+    height: 400px;
 }
