@@ -25,6 +25,22 @@ var SearchFilterController = Backbone.Controller.extend({
             $("#activityList").html('');
             activityListController.addActivities(activities);
         }
+    },
+
+    filterByDevice : function(){
+        var selectedDevices = $('input[name="devices"]').serialize();
+        if (selectedDevices.length > 0) {
+
+            var filteredActivities = _.select(activities, function(activities) {
+                var activity = activities.activity;
+                return selectedDevices.indexOf(activity.deviceType.toLowerCase()) != -1;
+            });
+            $("#activityList").html('');
+            activityListController.addActivities(filteredActivities);
+        } else {
+            $("#activityList").html('');
+            activityListController.addActivities(activities);
+        }
     }
 });
 
