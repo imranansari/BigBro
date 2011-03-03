@@ -14,12 +14,12 @@
     %script{:src => "js/lib/handlebars-0.9.0.pre.4.js"}
     %script{:src => "js/lib/jquery.slidePanel.js"}
     %script{:src => "js/lib/jquery.lightbox_me.js"}
-    %script{:src => "js/analytics_controller.js?3"}
-    %script{:src => "js/activity_controller.js?2"}
-    %script{:src => "js/map_controller.js?2"}
-    %script{:src => "js/sse_controller.js?2"}
-    %script{:src => "js/searchfilter_controller.js?2"}
-    %script{:src => "js/bigbro.js?2"}
+    %script{:src => "js/analytics_controller.js?4"}
+    %script{:src => "js/activity_controller.js?4"}
+    %script{:src => "js/map_controller.js?4"}
+    %script{:src => "js/sse_controller.js?4"}
+    %script{:src => "js/searchfilter_controller.js?4"}
+    %script{:src => "js/bigbro.js?4"}
     %script{:src => "http://www.google.com/jsapi"}    
     :javascript
       google.load('visualization', '1', {packages: ['corechart']});
@@ -37,25 +37,25 @@
       #panel2.panel.right
         #devices
           .filterCategory Filter By Device
-          %input{:type =>'checkbox', :id =>'iPhone', :value => 'iPhone', :name => 'devices'}
+          %input{:type =>'checkbox', :id =>'iPhone', :value => 'iphone', :name => 'devices'}
           %label{:for => 'iPhone'} iPhone
           %br
-          %input{:type =>'checkbox', :id =>'iPad', :value => 'iPad', :name => 'devices'}
+          %input{:type =>'checkbox', :id =>'iPad', :value => 'ipad', :name => 'devices'}
           %label{:for => 'iPad'} iPad
           %br
-          %input{:type =>'checkbox', :id =>'galaxyTab', :value => 'galaxyTab', :name => 'devices'}
+          %input{:type =>'checkbox', :id =>'galaxyTab', :value => 'android', :name => 'devices'}
           %label{:for => 'galaxyTab'} Galaxy Tablet
           %br
           %br
         #apps
           .filterCategory Filter By Application
-          %input{:type =>'checkbox', :id =>'LincPad', :value => 'LincPad', :name => 'apps'}
+          %input{:type =>'checkbox', :id =>'LincPad', :value => 'lincpad', :name => 'apps'}
           %label{:for => 'LincPad'} LincPad
           %br
-          %input{:type =>'checkbox', :id =>'iEngage', :value => 'iEngage', :name => 'apps'}
+          %input{:type =>'checkbox', :id =>'iEngage', :value => 'iengage', :name => 'apps'}
           %label{:for => 'iEngage'} iEngage
           %br
-          %input{:type =>'checkbox', :id =>'iPresent', :value => 'iPresent', :name => 'apps'}
+          %input{:type =>'checkbox', :id =>'iPresent', :value => 'ipresent', :name => 'apps'}
           %label{:for => 'iPresent'} iPresent
   .flex-container
     #activity
