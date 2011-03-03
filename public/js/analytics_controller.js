@@ -8,7 +8,7 @@ AnalyticsController = Backbone.Controller.extend({
             closeClick: false,
             overlaySpeed:50,
             closeSelector:".closeNote",
-            appearEffect:'fadeIn',
+            appearEffect:'slideDown',
             overlayDisappearSpeed: 0,
             overlayCSS : {background: 'black', opacity: .6},
             onLoad: function() {
@@ -33,8 +33,6 @@ AnalyticsController = Backbone.Controller.extend({
                        is3D: 'true',
                        backgroundColor : 'black',
                        legendTextStyle : {color: 'white'},
-                       //width: 600,
-                       //height:400,
                        titleTextStyle: {color: 'white'},
                        chartArea: {left:"5%",top:"5%",width:"100%",height:"80%"}}
 
