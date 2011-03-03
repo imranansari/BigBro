@@ -16,7 +16,7 @@ var SearchFilterController = Backbone.Controller.extend({
                 var activity = activities.activity;
                 //return activity.application == 'LincPad';
                 //return selectedApps.indexOf(activity.application) != -1;
-                return selectedApps.indexOf(activity.application) != -1;
+                return selectedApps.indexOf(activity.application.toLowerCase()) != -1;
             });
             //console.log(filteredActivities);
             $("#activityList").html('');
