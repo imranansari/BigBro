@@ -8,6 +8,7 @@ require './configure_db'
 
 get '/app' do
   #escape_attrs : false
+  response['Expires'] = (Time.now).httpdate
   haml :index
 end
 
