@@ -33,6 +33,9 @@ $(document).ready(function () {
         searchFilterController.filterByApp();
     });
 
+    $('input[name="devices"]').change(function() {
+        searchFilterController.filterByDevice();
+    });
 
     $('#analytics').click(function() {
         analyticsController.displayVisualization();
