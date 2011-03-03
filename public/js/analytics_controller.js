@@ -2,6 +2,21 @@
  *
  */
 AnalyticsController = Backbone.Controller.extend({
+
+    displayVisualization: function(){
+        $("#analyticsDisplay").lightbox_me({
+            closeClick: false,
+            overlaySpeed:50,
+            closeSelector:".closeNote",
+            appearEffect:'fadeIn',
+            overlayDisappearSpeed: 0,
+            overlayCSS : {background: 'black', opacity: .6},
+            onLoad: function() {
+                analyticsController.drawVisualization();
+            }
+        });
+    },
+
     drawVisualization: function() {
         var data = new google.visualization.DataTable();
         data.addColumn('string', 'Activity');
@@ -14,8 +29,17 @@ AnalyticsController = Backbone.Controller.extend({
           data.setValue(2, 0, 'Other');
         data.setValue(2, 1, 60);
 
+        var options = {title:"Devices Using Mobile Apps",
+                       is3D: 'true',
+                       backgroundColor : 'black',
+                       legendTextStyle : {color: 'white'},
+                       //width: 600,
+                       //height:400,
+                       titleTextStyle: {color: 'white'},
+                       chartArea: {left:"5%",top:"5%",width:"100%",height:"80%"}}
+
         // Create and draw the visualization.
-        new google.visualization.PieChart(document.getElementById('visualization')).draw(data, {title:"Devices Using Mobile Apps"});
+        new google.visualization.PieChart(document.getElementById('visualization')).draw(data, options);
     }
 
 

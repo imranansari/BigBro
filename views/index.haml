@@ -14,11 +14,15 @@
     %script{:src => "js/lib/handlebars-0.9.0.pre.4.js"}
     %script{:src => "js/lib/jquery.slidePanel.js"}
     %script{:src => "js/lib/jquery.lightbox_me.js"}
+    %script{:src => "js/analytics_controller.js"}
     %script{:src => "js/activity_controller.js?1"}
     %script{:src => "js/map_controller.js?1"}
     %script{:src => "js/sse_controller.js?1"}
     %script{:src => "js/searchfilter_controller.js?1"}
     %script{:src => "js/bigbro.js?1"}
+    %script{:src => "http://www.google.com/jsapi"}    
+    :javascript
+      google.load('visualization', '1', {packages: ['corechart']});
 
     = haml :'jstemplates/activityListItem'
     = haml :'jstemplates/mapPopup'    
@@ -58,5 +62,6 @@
       #activityListHeader Activity
       #activityList.col-1-flex
     #map.col-2-flex
-  #analyticsDisplay
-    #header Analytics
+#analyticsDisplay
+  #analyticsHeader Analytics
+  #visualization
