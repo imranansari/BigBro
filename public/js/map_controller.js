@@ -8,6 +8,11 @@
 
 var MapController = Backbone.Controller.extend({
 
+    /**
+     * Add Activity
+     * @param activity
+     * @param animationType
+     */
     addActivity: function (activity, animationType) {
         var marker = new google.maps.Marker({
             position: new google.maps.LatLng(activity.lat, activity.lng),
@@ -19,11 +24,15 @@ var MapController = Backbone.Controller.extend({
         mapController.addActivityToList(activity, marker);
     },
 
+    /**
+     * addActivityToList
+     * @param activity
+     * @param marker
+     */
     addActivityToList : function(activity, marker) {
 
         var source = $("script[name=activityListItem_tpl]").html();
         var template = Handlebars.compile(source);
-        //activity.location = getLocation(activity.lat, activity.lng);
         var activityHtml = template(activity);
         //console.log(activityHtml);
 
@@ -35,15 +44,22 @@ var MapController = Backbone.Controller.extend({
         }).prependTo("#activityList");
     },
 
+    /**
+     * AddMapMarker
+     * @param activity
+     * @param marker
+     */
     addMapMarker: function (activity, marker) {
         google.maps.event.addListener(marker, 'click', function() {
-
             infowindow.content = mapController.getMapPopupContent(activity);
             infowindow.open(map, marker);
         });
     },
 
-
+    /**
+     *Get MapPopUp Content
+     * @param activity
+     */
     getMapPopupContent: function (activity) {
         var source = $("script[name=mapPopup_tpl]").html();
         var template = Handlebars.compile(source);
@@ -51,26 +67,9 @@ var MapController = Backbone.Controller.extend({
         return mapPopupHtml;
     },
 
-    getLocation : function (lat, lng) {
-        var geocoder = new google.maps.Geocoder();
-        var latlng = new google.maps.LatLng(lat, lng);
-        var location;
-        geocoder.geocode({'latLng': latlng}, function(results, status) {
-            if (status == google.maps.GeocoderStatus.OK) {
-                if (results[1]) {
-                    location = results[1].formatted_address;
-                    console.log('loc 1 :' + location)
-                } else {
-                    location = "No results found";
-                }
-            } else {
-                location = "Geocoder failed due to: " + status;
-            }
-        });
-        console.log('location :' + location);
-        return location;
-    },
-
+    /**
+     * Register Handlebar Template Partials
+     */
     registerTemplatePartials : function() {
         Handlebars.registerPartial('deviceIcon', function(activity) {
             var icon;
