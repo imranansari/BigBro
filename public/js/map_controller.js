@@ -15,7 +15,6 @@ var MapController = Backbone.Controller.extend({
             title: activity.user,
             animation: animationType
         });
-
         mapController.addMapMarker(activity, marker);
         mapController.addActivityToList(activity, marker);
     },

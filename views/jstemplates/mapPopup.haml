@@ -5,19 +5,23 @@
         %div{:style => "display: table-cell;"}
           %span
             %img.icon{:src => '/images/user.png'}
+        %div{:style => "display: table-cell;"}
           %span.user {{user}}
       %div{:style => "display: table-row"}
         %div{:style => "display: table-cell;"}
           %span
             {{> deviceIcon this}}
+        %div{:style => "display: table-cell;"}
           %span {{application}}
       %div{:style => "display: table-row"}
         %div{:style => "display: table-cell;"}
           %span
-          %img.icon{:src => '/images/event.png'}
+            %img.icon{:src => '/images/event.png'}
+        %div{:style => "display: table-cell;"}
           %span {{event}}
       %div{:style => "display: table-row"}
         %div{:style => "display: table-cell;"}
-          %span
           %img.icon{:src => '/images/map.png'}
-          %span {{location}}
+        #location{:style => "display: table-cell;"}
+          #street {{loc_street}}
+          #cityState {{loc_city}}, {{loc_state}} - {{loc_zipcode}}

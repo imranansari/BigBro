@@ -18,6 +18,11 @@ configure do
         t.datetime :created_at
         t.string :deviceType
         t.string :osVersion
+        t.string :loc_street
+        t.string :loc_city
+        t.string :loc_state
+        t.string :loc_zipcode
+        t.string :loc_country
       end
     end
   end

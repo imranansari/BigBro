@@ -8,7 +8,7 @@
 
 SSEController = Backbone.Controller.extend({
     initEventSource: function() {
-        var source = new EventSource('/pullNewActivity');
+        var source = new EventSource('pullnewactivity');
         source.addEventListener('message', function(e) {
             console.log(e.data);
             if (e.data.trim() === 'true') {
@@ -17,12 +17,14 @@ SSEController = Backbone.Controller.extend({
         }, false);
 
         source.addEventListener('open', function(e) {
-            // Connection was opened.
+                console.log('conn open');
         }, false);
 
         source.addEventListener('error', function(e) {
             if (e.eventPhase == EventSource.CLOSED) {
                 // Connection was closed.
+                console.log('error ');
+                console.log(e);
             }
         }, false);
     }

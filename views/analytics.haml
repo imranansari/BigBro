@@ -3,12 +3,15 @@
     %title Analytics
     %link{:href => "css/bigbro.css", :media => "all", :rel => "stylesheet", :type => "text/css"}
     %script{:src => "js/lib/jquery-1.4.4.js"}
+    %script{:src => "js/lib/underscore-1.1.3.js"}
     %script{:src => "js/lib/backbone.js"}
     %script{:src => "js/analytics_controller.js"}
     %script{:src => "js/analytics.js"}
     %script{:src => "http://www.google.com/jsapi"}
+    %script{:src => "js/lib/jquery.lightbox_me.js"}
     :javascript
       google.load('visualization', '1', {packages: ['corechart']});
 
   %body
+    %button{:id => 'view', :value => 'show'}
     #visualization

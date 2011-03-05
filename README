@@ -1,0 +1,3 @@
+    #%script{:src => "http://gettopup.com/releases/latest/top_up-min.js?libs=clip+resize"}
+
+              #%a{:href =>"#analyticsDisplay", :id =>"dom_example", :toptions =>"width = 400, type = dom, title = Hidden element #1, layout = flatlook, resizable = 0"}
