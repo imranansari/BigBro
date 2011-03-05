@@ -7,6 +7,10 @@
  */
 
 var SearchFilterController = Backbone.Controller.extend({
+
+    /**
+     * filterByApp
+     */
     filterByApp : function() {
         var selectedApps = $('input[name="apps"]').serialize();
         if (selectedApps.length > 0) {
@@ -27,6 +31,9 @@ var SearchFilterController = Backbone.Controller.extend({
         }
     },
 
+    /**
+     * FilterByDevice
+     */
     filterByDevice : function(){
         var selectedDevices = $('input[name="devices"]').serialize();
         if (selectedDevices.length > 0) {
