@@ -21,16 +21,21 @@ var ActivityListController = Backbone.Controller.extend({
         mapController.registerTemplatePartials();
     },
 
-    loadActivitiesFromServer: function() {
-        var activities = activityListController.getActivitiesFromService();
+    loadActivities: function() {
+        activities = activityListController.getActivitiesFromService();
         activityListController.addActivities(activities);
     },
 
     getActivitiesFromService: function() {
         var activities;
-        $.get('/activity', {dataType : 'json'}, function(data) {
-            return data;
-        });
+        $.ajax({
+            url: '/activity',
+            type: 'GET',
+            dataType : 'json',
+            async: false,
+            success: function(data) {
+                activities = data;
+            }});
         return activities;
     },
 
