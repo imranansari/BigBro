@@ -22,11 +22,16 @@ var ActivityListController = Backbone.Controller.extend({
     },
 
     loadActivitiesFromServer: function() {
+        var activities = activityListController.getActivitiesFromService();
+        activityListController.addActivities(activities);
+    },
+
+    getActivitiesFromService: function() {
+        var activities;
         $.get('/activity', {dataType : 'json'}, function(data) {
-            activities = data;
-            //console.log(activities);
-            activityListController.addActivities(activities);
+            return data;
         });
+        return activities;
     },
 
     addActivities: function (activities) {
@@ -35,22 +40,21 @@ var ActivityListController = Backbone.Controller.extend({
         });
     },
 
+    addNewEvent: function () {
+        console.log('add new event');
+
+        var updatedActivitiesFromServer = activityListController.getActivitiesFromService();
+        var newActivities = activityListController.getNewActivities(updatedActivitiesFromServer);
+        jQuery.each(newActivities, function() {
+            mapController.addActivity(this.activity, google.maps.Animation.DROP);
+        });
+        activities = updatedActivitiesFromServer;
+    },
+
     getNewActivities:function (updatedActivitiesFromServer) {
         return _.select(updatedActivitiesFromServer, function(updatedActivitiesFromServer) {
             var activity = updatedActivitiesFromServer.activity;
             return !activityListController.exists(activity.id);
-        });
-    },
-
-    addNewEvent: function () {
-        console.log('add new event');
-
-        $.get('/activity', {dataType : 'json'}, function(updatedActivitiesFromServer) {
-            var newActivities = activityListController.getNewActivities(updatedActivitiesFromServer);
-            jQuery.each(newActivities, function() {
-                mapController.addActivity(this.activity, google.maps.Animation.DROP);
-            });
-            activities = updatedActivitiesFromServer;
         });
     },
 
@@ -63,11 +67,7 @@ var ActivityListController = Backbone.Controller.extend({
             }
         });
 
-        if (!success) {
-            return false;
-        } else {
-            return true;
-        }
+        return success;
     }
 
 });
