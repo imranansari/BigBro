@@ -63,8 +63,10 @@ get '/activity' do
 end
 
 get '/pullnewactivity' do
-=begin
-  content_type 'text/event-stream'
+   response.headers['Content-Type'] = 'text/event-stream'
+   response.headers['charset'] = ''
+   response.headers['Cache-Control'] = 'no-cache'
+  #content_type '', :charset => '', :'Cache-Control' => 'no-cache'
   #connection 'keep-alive'
   
   newevent   = false
@@ -77,14 +79,6 @@ get '/pullnewactivity' do
 
   response = "data: "+newevent.inspect+" \n"
   response += "id: 12345\n\n"
-=end
-
-  EventMachine.next_tick do
-    request.env['async.callback'].call [
-                                           200, {'Content-Type' => 'text/event-stream'},
-                                           EventStream.new]
-  end
-  [-1, {}, []]
 
 end
 
