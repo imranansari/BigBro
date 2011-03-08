@@ -45,6 +45,7 @@ var SearchFilterController = Backbone.Controller.extend({
                 return selectedDevices.indexOf(activity.deviceType.toLowerCase()) != -1;
             });
             $("#activityList").html('');
+            searchFilterController.clearAllMarkers();            
             activityListController.addActivities(filteredActivities);
         } else {
             $("#activityList").html('');
@@ -53,16 +54,18 @@ var SearchFilterController = Backbone.Controller.extend({
     },
 
     clearAllMarkers : function() {
+        /*if (markerArray) {
+         $.each(markerArray, function() {
+
+         console.log('val  : ' + this);
+         this.marker.setMap(null);
+         });
+         }*/
         if (markerArray) {
-            $.each(markerArray, function(key, value) {
-
-                console.log(key + ' : ' + value);
-                if (value != undefined) {
-                    value.setMap(null);
-                }
-            });
+            for (i in markerArray) {
+                markerArray[i].setMap(null);
+            }
         }
-
     }
 });
 

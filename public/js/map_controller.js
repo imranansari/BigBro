@@ -20,7 +20,8 @@ var MapController = Backbone.Controller.extend({
             title: activity.user,
             animation: animationType
         });
-        markerArray['i_'+activity.id] = marker;
+        //markerArray.push({activityId :activity.id, marker: marker});
+        markerArray.push(marker);
         mapController.addMapMarker(activity, marker);
         mapController.addActivityToList(activity, marker);
     },
