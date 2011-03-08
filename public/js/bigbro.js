@@ -25,7 +25,7 @@ $(document).ready(function () {
 
     sseController.initEventSource();
     activityListController.initViews();
-    activityListController.loadActivitiesFromServer();
+    activityListController.loadActivities();
 
     var activities;
 

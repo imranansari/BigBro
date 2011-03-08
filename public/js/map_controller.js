@@ -14,12 +14,13 @@ var MapController = Backbone.Controller.extend({
      * @param animationType
      */
     addActivity: function (activity, animationType) {
-        var marker = new google.maps.Marker({
+        marker = new google.maps.Marker({
             position: new google.maps.LatLng(activity.lat, activity.lng),
             map: map,
             title: activity.user,
             animation: animationType
         });
+        markerArray['i_'+activity.id] = marker;
         mapController.addMapMarker(activity, marker);
         mapController.addActivityToList(activity, marker);
     },

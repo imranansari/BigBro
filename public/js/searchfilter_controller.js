@@ -6,6 +6,7 @@
  * To change this template use File | Settings | File Templates.
  */
 
+var markerArray = new Array();
 var SearchFilterController = Backbone.Controller.extend({
 
     /**
@@ -24,6 +25,7 @@ var SearchFilterController = Backbone.Controller.extend({
             });
             //console.log(filteredActivities);
             $("#activityList").html('');
+            searchFilterController.clearAllMarkers();
             activityListController.addActivities(filteredActivities);
         } else {
             $("#activityList").html('');
@@ -34,7 +36,7 @@ var SearchFilterController = Backbone.Controller.extend({
     /**
      * FilterByDevice
      */
-    filterByDevice : function(){
+    filterByDevice : function() {
         var selectedDevices = $('input[name="devices"]').serialize();
         if (selectedDevices.length > 0) {
 
@@ -48,6 +50,19 @@ var SearchFilterController = Backbone.Controller.extend({
             $("#activityList").html('');
             activityListController.addActivities(activities);
         }
+    },
+
+    clearAllMarkers : function() {
+        if (markerArray) {
+            $.each(markerArray, function(key, value) {
+
+                console.log(key + ' : ' + value);
+                if (value != undefined) {
+                    value.setMap(null);
+                }
+            });
+        }
+
     }
 });
 

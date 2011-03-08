@@ -7,6 +7,10 @@
  */
 
 SSEController = Backbone.Controller.extend({
+
+    /**
+     * initEventSource
+     */
     initEventSource: function() {
         var source = new EventSource('pullnewactivity');
         source.addEventListener('message', function(e) {
@@ -17,7 +21,7 @@ SSEController = Backbone.Controller.extend({
         }, false);
 
         source.addEventListener('open', function(e) {
-                console.log('conn open');
+            console.log('conn open');
         }, false);
 
         source.addEventListener('error', function(e) {

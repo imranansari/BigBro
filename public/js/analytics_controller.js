@@ -3,7 +3,7 @@
  */
 AnalyticsController = Backbone.Controller.extend({
 
-    displayVisualization: function(){
+    displayVisualization: function() {
         $("#analyticsDisplay").lightbox_me({
             closeClick: false,
             overlaySpeed:50,
@@ -26,20 +26,18 @@ AnalyticsController = Backbone.Controller.extend({
         data.setValue(0, 1, 10);
         data.setValue(1, 0, 'Android');
         data.setValue(1, 1, 30);
-          data.setValue(2, 0, 'Other');
+        data.setValue(2, 0, 'Other');
         data.setValue(2, 1, 60);
 
         var options = {title:"Devices Using Mobile Apps",
-                       is3D: 'true',
-                       backgroundColor : 'black',
-                       legendTextStyle : {color: 'white'},
-                       titleTextStyle: {color: 'white'},
-                       chartArea: {left:"5%",top:"5%",width:"100%",height:"80%"}}
+            is3D: 'true',
+            backgroundColor : 'black',
+            legendTextStyle : {color: 'white'},
+            titleTextStyle: {color: 'white'},
+            chartArea: {left:"5%",top:"5%",width:"100%",height:"80%"}};
 
-        // Create and draw the visualization.
         new google.visualization.PieChart(document.getElementById('visualization')).draw(data, options);
     }
-
 
 });
 
