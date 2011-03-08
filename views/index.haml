@@ -18,9 +18,9 @@
     %script{:src => "js/activity_controller.js?4"}
     %script{:src => "js/map_controller.js?4"}
     %script{:src => "js/sse_controller.js?4"}
-    %script{:src => "js/searchfilter_controller.js?4"}
+    %script{:src => "js/searchfilter_controller.js?22"}
     %script{:src => "js/bigbro.js?4"}
-    %script{:src => "http://www.google.com/jsapi"}    
+    %script{:src => "http://www.google.com/jsapi"}
     :javascript
       google.load('visualization', '1', {packages: ['corechart']});
 
@@ -43,8 +43,11 @@
           %input{:type =>'checkbox', :id =>'iPad', :value => 'ipad', :name => 'devices'}
           %label{:for => 'iPad'} iPad
           %br
-          %input{:type =>'checkbox', :id =>'galaxyTab', :value => 'android', :name => 'devices'}
-          %label{:for => 'galaxyTab'} Galaxy Tablet
+          %input{:type =>'checkbox', :id =>'android_phone', :value => 'android_phone', :name => 'devices'}
+          %label{:for => 'android_phone'} Android Phone
+          %br
+          %input{:type =>'checkbox', :id =>'android_tablet', :value => 'android_tablet', :name => 'devices'}
+          %label{:for => 'android_tablet'} Android Tablet
           %br
           %br
         #apps
