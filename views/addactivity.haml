@@ -18,7 +18,10 @@
             %td
               App
             %td
-              %input{:type => 'text', :name => 'application'}
+              %select{:name => 'application'}
+                %option{:value => "ipresent"} iPresent
+                %option{:value => "iengage"} iEngage
+                %option{:value => "lincpad"} LincPad
           %tr
             %td
               Event
@@ -28,7 +31,11 @@
             %td
               Device Type
             %td
-              %input{:type => 'text', :name => 'deviceType'}
+              %select{:name => 'deviceType'}
+                %option{:value => "android_phone"} Android Phone
+                %option{:value => "android_tablet"} Android Tablet
+                %option{:value => "iphone"} iPhone
+                %option{:value => "ipad"} iPad
           %tr
             %td
               OS Version

@@ -79,6 +79,12 @@ var MapController = Backbone.Controller.extend({
                 case 'android':
                     icon = 'android.png';
                     break;
+                case 'ipad':
+                    icon = 'iphone.png';
+                    break;
+                case 'android_tablet':
+                    icon = 'android.png';
+                    break;
                 case 'iphone':
                     icon = 'iphone.png';
                     break;
