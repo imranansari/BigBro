@@ -7,6 +7,28 @@ require 'geokit'
 include Geokit::Geocoders
 require 'active_record'
 require './configure_db'
+require 'eventmachine'
+
+class EventStream
+  include EventMachine::Deferrable
+
+  def each
+    count = 0
+    timer = EventMachine::PeriodicTimer.new(5) do
+      #yield "data: #{count += 1}\n\n"
+      newevent   = false
+      sseControl = Ssecontrol.find(1)
+      if sseControl.newevent then
+        newevent            = true
+        sseControl.newevent = false
+        sseControl.save
+      end
+
+      yield "data: "+newevent.inspect+" \n\n"
+    end
+    errback { timer.cancel }
+  end
+end
 
 get '/app' do
   #escape_attrs : false
@@ -41,7 +63,10 @@ get '/activity' do
 end
 
 get '/pullnewactivity' do
+=begin
   content_type 'text/event-stream'
+  #connection 'keep-alive'
+  
   newevent   = false
   sseControl = Ssecontrol.find(1)
   if sseControl.newevent then
@@ -50,7 +75,17 @@ get '/pullnewactivity' do
     sseControl.save
   end
 
-  response = "data: "+newevent.inspect+" \n\n"
+  response = "data: "+newevent.inspect+" \n"
+  response += "id: 12345\n\n"
+=end
+
+  EventMachine.next_tick do
+    request.env['async.callback'].call [
+                                           200, {'Content-Type' => 'text/event-stream'},
+                                           EventStream.new]
+  end
+  [-1, {}, []]
+
 end
 
 get '/css/:name.css' do
