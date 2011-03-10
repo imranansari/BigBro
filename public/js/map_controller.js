@@ -38,12 +38,14 @@ var MapController = Backbone.Controller.extend({
         var activityHtml = template(activity);
         //console.log(activityHtml);
 
-        $("<li/>", {
+        var activityItem = $("<li/>", {
             html: activityHtml,
             click: function() {
                 google.maps.event.trigger(marker, 'click')
             }
         }).prependTo("#activityList");
+
+        $(activityItem).trigger('click');
     },
 
     /**
