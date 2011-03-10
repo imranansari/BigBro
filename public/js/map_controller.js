@@ -45,6 +45,7 @@ var MapController = Backbone.Controller.extend({
             }
         }).prependTo("#activityList");
 
+        $(activityItem).hide().fadeIn(1000);
         $(activityItem).trigger('click');
     },
 
