@@ -34,9 +34,17 @@ $(document).ready(function() {
         var ua = navigator.userAgent.toLowerCase();
         var device = "Other";
 
-        device = (ua.indexOf("iphone") != -1 ? "" : "");
-        device = (ua.indexOf("android") != -1 ? "Android" : "");
-        device = (ua.indexOf("ipad") != -1 ? "iPad" : "");
+        if (ua.indexOf("chrome") != -1)
+            device = "chrome";
+
+        if (ua.indexOf("iphone") != -1)
+            device = "iphone";
+
+        if (ua.indexOf("android") != -1)
+            device = "android";
+
+        if (ua.indexOf("ipad") != -1)
+            device = "ipad";
 
         return device;
     }
