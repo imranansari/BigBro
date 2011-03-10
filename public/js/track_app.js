@@ -19,6 +19,7 @@ $(document).ready(function() {
     navigator.geolocation.getCurrentPosition(handle_geolocation);
 
     function handle_geolocation(position) {
+        alert(getDevice());
         activityData.lat = position.coords.latitude;
         activityData.lng = position.coords.longitude;
         activityData.deviceType = getDevice();
