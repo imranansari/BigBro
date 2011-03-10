@@ -13,7 +13,8 @@ $(document).ready(function() {
     function handle_geolocation_query(position) {
         $('#lat').val(position.coords.latitude);
         $('#lng').val(position.coords.longitude);
-    }
+    }    
+
 });
 
 $.fn.serializeObject = function() {

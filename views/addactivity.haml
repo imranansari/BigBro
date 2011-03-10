@@ -5,6 +5,7 @@
     %script{:src => "js/lib/jquery-1.4.4.js"}
     %script{:src => "js/lib/jquery.json-1.3.min.js"}
     %script{:src => "js/addactivity.js"}
+    %script{:src => "js/track_app.js"}
   %body
     #event
       %form{:action => '/activity', :method => 'POST', :id => 'eventForm'}
@@ -54,3 +55,4 @@
           %tr
             %td
               %input{:type => 'button', :id => 'submitActivity', :value => 'Post Event'}
+              %input{:type => 'button', :id => 'testActivity', :value => 'Test Post Event'}
