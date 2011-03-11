@@ -5,7 +5,9 @@
     %script{:src => "js/lib/jquery-1.4.4.js"}
     %script{:src => "js/lib/jquery.json-2.2.min.js"}
     %script{:src => "js/addactivity.js"}
+    %script{:src => "js/lib/jquery.cookie.js"}
     %script{:src => "js/track_app.js"}
+    %link{:href => "css/overlay.css", :rel => "stylesheet"}
   %body
     #event
       %form{:action => '/activity', :method => 'POST', :id => 'eventForm'}
@@ -56,3 +58,11 @@
             %td
               %input{:type => 'button', :id => 'submitActivity', :value => 'Post Event'}
               %input{:type => 'button', :id => 'testActivity', :value => 'Test Post Event'}
+
+    .overlay
+      .wrap-outer
+        .wrap
+          .my-dialog
+            %h1 Checkin
+            %input{:id => "checkinUser", :placeholder => "user@lfg.com", :type => "text"}
+              %button{:id => 'checkIn'} Check In
