@@ -51,8 +51,8 @@ $(document).ready(function() {
     }
 
     function isUserCheckedIn() {
-        //return $.cookie("checkedIn");
-        return false;
+        return $.cookie("checkedIn");
+        //return false;
     }
 
     function setUserCheckedIn() {
