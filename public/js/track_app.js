@@ -12,11 +12,31 @@ $(document).ready(function() {
         deviceType : 'iphone',
         event : 'Search',
         application : 'LincPad',
-        user : 'TestUser6',
         osVersion : '3.0'
     };
 
-    navigator.geolocation.getCurrentPosition(handle_geolocation);
+    document.querySelector('.overlay').addEventListener('click', function(ev) {
+        if (/overlay|wrap/.test(ev.target.className)) toggleOverlay();
+    });
+
+    checkIn();
+
+    function checkIn() {
+        if (!isUserCheckedIn()) {
+            toggleOverlay();
+        }
+        return;
+    }
+
+    $('#checkIn').click(function() {
+        activityData.user = $('#checkinUser').val();
+        if(activityData.user == ''){
+            alert('Please enter you email id');
+            return;
+        }
+        toggleOverlay();
+        navigator.geolocation.getCurrentPosition(handle_geolocation);
+    });
 
     function handle_geolocation(position) {
         activityData.lat = position.coords.latitude;
@@ -27,6 +47,20 @@ $(document).ready(function() {
         console.log(data);
         //$.post("http://ec2-67-202-37-158.compute-1.amazonaws.com/activity", data);
         $.post("/activity", data);
+        setUserCheckedIn();
+    }
+
+    function isUserCheckedIn() {
+        //return $.cookie("checkedIn");
+        return false;
+    }
+
+    function setUserCheckedIn() {
+        $.cookie("checkedIn", "true");
+    }
+
+    function toggleOverlay() {
+        document.body.className = document.body.className.indexOf('overlaid') != -1 ? '' : 'overlaid';
     }
 
     function getDevice() {
@@ -47,5 +81,4 @@ $(document).ready(function() {
 
         return device;
     }
-
 });
