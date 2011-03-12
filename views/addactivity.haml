@@ -65,5 +65,5 @@
         .wrap
           .my-dialog
             %h1 Checkin
-            %input{:id => "checkinUser", :placeholder => "user@lfg.com", :type => "text"}
-              %button{:id => 'checkIn'} Check In
+            %input{:id => "checkinUser", :placeholder => "user@lfg.com", :type => "email", :autocapitalize =>"off", :autocorrect =>"off" }
+            %button{:id => 'checkIn'} Check In
