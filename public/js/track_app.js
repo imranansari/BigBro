@@ -45,8 +45,8 @@ $(document).ready(function() {
 
         var data = $.toJSON(activityData);
         console.log(data);
-        //$.post("http://ec2-67-202-37-158.compute-1.amazonaws.com/activity", data);
-        $.post("/activity", data);
+        $.post("http://ec2-67-202-37-158.compute-1.amazonaws.com/activity", data);
+        //$.post("/activity", data);
         setUserCheckedIn();
     }
 
