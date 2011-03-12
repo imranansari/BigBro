@@ -51,12 +51,14 @@ $(document).ready(function() {
     }
 
     function isUserCheckedIn() {
-        //return $.cookie("checkedIn");
+        var checkedIn = $.cookie("checkedIn");
+        console.log("checkedIn cookie: "+checkedIn);
+        //return checkedIn;
         return false;
     }
 
     function setUserCheckedIn() {
-        $.cookie("checkedIn", "true");
+        $.cookie("checkedIn", "true", { path: '/' });
     }
 
     function toggleOverlay() {
