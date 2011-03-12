@@ -30,7 +30,7 @@ $(document).ready(function() {
 
     $('#checkIn').click(function() {
         activityData.user = $('#checkinUser').val();
-        if(activityData.user == ''){
+        if (activityData.user == '') {
             alert('Please enter you email id');
             return;
         }
@@ -52,9 +52,12 @@ $(document).ready(function() {
 
     function isUserCheckedIn() {
         var checkedIn = $.cookie("checkedIn");
-        console.log("checkedIn cookie: "+checkedIn);
-        //return checkedIn;
-        return false;
+        console.log("checkedIn cookie: " + checkedIn);
+        if(getURLParameter("checkedin") == 'false'){
+            return false;
+        } else{
+            return checkedIn;
+        }
     }
 
     function setUserCheckedIn() {
@@ -83,5 +86,11 @@ $(document).ready(function() {
             device = "ipad";
 
         return device;
+    }
+
+    function getURLParameter(name) {
+        return unescape(
+                (RegExp(name + '=' + '(.+?)(&|$)').exec(location.search) || [,null])[1]
+                );
     }
 });
