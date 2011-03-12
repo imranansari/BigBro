@@ -53,9 +53,9 @@ $(document).ready(function() {
     function isUserCheckedIn() {
         var checkedIn = $.cookie("checkedIn");
         console.log("checkedIn cookie: " + checkedIn);
-        if(getURLParameter("checkedin") == 'false'){
+        if (getURLParameter("checkedin") == 'false') {
             return false;
-        } else{
+        } else {
             return checkedIn;
         }
     }
@@ -90,7 +90,6 @@ $(document).ready(function() {
 
     function getURLParameter(name) {
         return unescape(
-                (RegExp(name + '=' + '(.+?)(&|$)').exec(location.search) || [,null])[1]
-                );
+                (RegExp(name + '=' + '(.+?)(&|$)').exec(location.search) || [,null])[1]);
     }
 });
