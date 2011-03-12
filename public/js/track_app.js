@@ -51,8 +51,8 @@ $(document).ready(function() {
     }
 
     function isUserCheckedIn() {
-        return $.cookie("checkedIn");
-        //return false;
+        //return $.cookie("checkedIn");
+        return false;
     }
 
     function setUserCheckedIn() {
@@ -60,6 +60,7 @@ $(document).ready(function() {
     }
 
     function toggleOverlay() {
+        $('.overlay').show();
         document.body.className = document.body.className.indexOf('overlaid') != -1 ? '' : 'overlaid';
     }
 
