@@ -9,9 +9,8 @@
 $(document).ready(function() {
 
     var activityData = {
-        deviceType : 'iphone',
-        event : 'Search',
-        application : 'LincPad',
+        event : 'CheckIn',
+        application : 'ITForumAgenda',
         osVersion : '3.0'
     };
 
